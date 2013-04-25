@@ -18,6 +18,7 @@
 	<constant name="struts.dispatcher.parametersWorkaround" value="false"/>
 	
 	<!-- struts2拦截器 -->
-	<package name="struts2" namespace="/user" extends="json-default"> 
+	<package name="basePackage" extends="struts-default">
+		
 	</package>
 </struts> 

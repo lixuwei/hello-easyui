@@ -3,6 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--操作User实体  -->
-<mapper namespace="com.lee.study.easyui.domain.User">
 
+<mapper namespace="com.lee.study.easyui.domain.User">
+	
+	<insert id="add" parameterType="User">
+		insert into
+			t_user(firstname,lastname,phone,email)
+		values
+			(#{firstname},#{lastname},#{phone},#{email})
+	</insert>
+	
+	<update id="update" parameterType="User">
+		update t_user set
+			firstname=#{firstname},lastname=#{lastname},phone=#{phone},email=#{email}
+		where
+			id=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from t_user where id=#{id}
+	</delete>
+	
+	<!-- 默认安装firstname排序 -->
+	<select id="pagination" parameterType="map" resultType="User">
+		select * from(
+			select *,row_number() over(order by firstname desc) as 'rowid' from t_user 
+		) as t
+			where rowid between #{pageStart} and #{pageEnd} 
+	</select>
+	<select id="total" resultType="int">
+		select count(id) from t_user
+	</select>
 </mapper>

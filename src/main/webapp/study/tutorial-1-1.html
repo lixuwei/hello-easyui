@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="../jslib/easyui/demo/demo.css">
 <script type="text/javascript" src="../jslib/easyui/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="../jslib/easyui/jquery.easyui.min.js"></script>
-
 <style type="text/css">
 	#fm{
 		margin: 0;
@@ -39,7 +38,7 @@
 	</div>
 	
 	<table id="dg" title="My First DataGrid" class="easyui-datagrid" style="width: 700px;height: 250px"
-		url="" toolbar="#toolbar" pagination="true" rownumbers="true"
+		url="user/findAllUser.action" toolbar="#toolbar" pagination="true" rownumbers="true"
 		fitColumns="true" singleSelect="true"
 	>
 		<thead>
@@ -63,9 +62,9 @@
 		>Remove User</a>
 	</div>
 	
-	<div id="dlg" class="easyui-dialog" style="width: 400px;height: 280px;padding: 10px 20px" closed="true" button="#dlg-buttons">
+	<div id="dlg" class="easyui-dialog" style="width: 400px;height: 280px;padding: 10px 20px" closed="true" buttons="#dlg-buttons">
 		<div class="ftitle">用户信息</div>
-		<form id="fm" method="post" novalidate>
+		<form id="fm" method="post">
 			<div class="fitem">
 				<label>First Name</label>
 				<input name="firstname" class="easyui-validatebox" required="true"/>
@@ -78,6 +77,10 @@
 				<label>Email</label>
 				<input name="email" class="easyui-validatebox" validType="email"/>
 			</div>
+			<div class="fitem">
+				<label>Phone</label>
+				<input name="phone" class="easyui-validatebox" validType="email"/>
+			</div>
 		</form>
 	</div>
 	<div id="dlg-buttons">
@@ -89,25 +92,26 @@
 		function newUser(){
 			$('#dlg').dialog('open').dialog('setTitle','new User');
 			$('#fm').form('clear');
-			url='';
+			url='user/saveUser.action';
 		}
 		function editUser(){
 			var row=$('#dg').datagrid('getSelected');
 			if(row){
 				$('#dlg').dialog('open').dialog('setTitle','Edit User');
 				$('#fm').form('load',row);
-				url = 'update_user?id='+row.id;
+				url = 'user/updateUser.action?id='+row.id;
 			}
 		}
 		function saveUser(){
-			$('fm').form('submit',{
+			$('#fm').form('submit',{
 				url:url,
 				onSubmit:function(){
 					return $(this).form('validate');
 				},
 				success:function(result){
+					result = eval('(' + result + ')');
 					if(result.errorMsg){
-						$.message.show({
+						$.messager.show({
 							title:'Error',
 							msg:result.errorMsg
 						});
@@ -118,18 +122,18 @@
 				}
 			});
 		}
-		function destroUser(){
-			var row=$('dg').datagrid('getSelected');
+		function destroyUser(){
+			var row=$('#dg').datagrid('getSelected');
 			
 			if(row){
-				$.message.confirm('提示'，'是否真得要删除这个用户',function(r){
+				$.messager.confirm('提示','是否真得要删除这个用户',function(r){
 					//这个应该是confirm框的选择值
 					if(r){
-						$.post('destroy_user.action',{id:row.id},function(result){
-							if(result.success){
+						$.post('user/destroyUser.action',{id:row.id},function(result){
+							if(result.success == "deleted"){
 								$('#dg').datagrid('reload');
 							}else{
-								$.message.show({
+								$.messager.show({
 									title:'Error',
 									msg:result.errorMsg
 								});

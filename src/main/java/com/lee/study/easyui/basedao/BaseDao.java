@@ -1,4 +1,7 @@
 package com.lee.study.easyui.basedao;
+
+import com.lee.study.easyui.web.vo.Pagination;
+
 /**
  * @description 公用的方法接口
  *
@@ -13,22 +16,28 @@ public interface BaseDao<T> {
 	 * 增加一个实体
 	 * @param entity
 	 */
-	public void add(T entity);
+	public int add(T entity);
 	/**
 	 * 更新一个实体
 	 * @param entity
 	 */
-	public void update(T entity);
+	public int update(T entity);
 	/**
 	 * 根据ID删除一个实体
-	 * @param id
+	 * @param id 
+	 * @return 受影响的条数
 	 */
-	public void delete(int id);
+	public int delete(int id);
 	/**
 	 * 根据ID获取一个实体对象
 	 * @param id
 	 * @return
 	 */
 	public T load(int id);
+	/**
+	 * 查询出所有的实体记录放入分页实体中
+	 * @return
+	 */
+	public Pagination<T> findAllUser(int pageNumber,int pageSize);
 	
 }
