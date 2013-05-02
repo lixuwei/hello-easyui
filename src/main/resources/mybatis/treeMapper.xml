@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--操作Tree实体  -->
+
+<mapper namespace="com.lee.study.easyui.domain.Tree">
+	
+	<insert id="add" parameterType="Tree">
+		insert into
+			t_tree(text,parentId,isParent)
+		values
+			(#{text},#{parentId},#{isParent})
+	</insert>
+	
+	<select id="findChildNodeByParentId" resultType="Tree" parameterType="int">
+		select * from t_tree where parentId = #{parentId}
+	</select>
+</mapper>
