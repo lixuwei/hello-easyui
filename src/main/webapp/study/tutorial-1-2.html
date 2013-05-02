@@ -2,14 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" ></script>
 <title>支持表内编辑</title>
 <link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="../jslib/easyui/demo/demo.css">
 <script type="text/javascript" src="../jslib/easyui/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="../jslib/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../jslib/easyui/plugins/jquery.datagrid.js"></script>
+<script type="text/javascript" src="../jslib/easyui/jquery.easyui.1.3.2.js"></script>
+<script type="text/javascript" src="../jslib/easyui/plugins/jquery.edatagrid.js"></script>
 <script type="text/javascript">
 	
 	$(function(){
@@ -36,18 +35,18 @@
 		singleSelect="true">
 			<thead>
 				<tr>
-					<th field="firstname" width="50" editor="{type:'validatebox'},options:{required:true}">First Name</th>
-					<th field="lastname" width="50" editor="{type:'validatebox'},options:{required:true}">Last Name</th>
+					<th field="firstname" width="50" editor="{type:'validatebox',options:{required:true}}">First Name</th>
+					<th field="lastname" width="50" editor="{type:'validatebox',options:{required:true}}">Last Name</th>
 					<th field="phone" width="50" editor="text">Phone</th>
-					<th field="email" width="50" editor="{type:'validatebox'},options:{required:email}">Email</th>
+					<th field="email" width="50" editor="{type:'validatebox',options:{validType:'email'}}">Email</th>
 				</tr>
 			</thead>
 		</table>
 		<div id="toolbar">
 			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">新增</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">撤销操作</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">撤销操作</a>
 		</div>
 </body>
 </html>

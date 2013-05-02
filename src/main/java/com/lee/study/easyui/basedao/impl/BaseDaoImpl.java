@@ -27,7 +27,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	@Resource
 	protected SqlSessionTemplate sessionTemplate;
 	
-	private Class<T> clazz = null;
+	protected Class<T> clazz = null;
 	
 	@SuppressWarnings("unchecked")
 	public BaseDaoImpl() {

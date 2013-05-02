@@ -1,5 +1,8 @@
 package com.lee.study.easyui.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +58,22 @@ public class UserServiceImpl implements UserService{
 			flag = true;
 		}
 		return flag;
+	}
+
+	@Override
+	public Pagination<User> findAllUserBySearch(int pageNumber, int pageSize,
+			String firstname, String lastname) {
+		
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("pageStart", (pageNumber-1)*pageSize+1);
+		params.put("pageEnd", pageNumber*pageSize);
+		
+		params.put("firstname", "%"+firstname+"%");
+		params.put("lastname", "%"+lastname+"%");
+		
+		Pagination<User> pagination = userDao.findAllUserByCondition(params);
+		
+		return pagination;
 	}
 
 }

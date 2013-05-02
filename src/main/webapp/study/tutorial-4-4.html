@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>布局UI</title>
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/demo/demo.css">
+<script type="text/javascript" src="../jslib/easyui/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="../jslib/easyui/jquery.easyui.1.3.2.js"></script>
+<script type="text/javascript">
+	function doSeach(){
+		$("#dg").datagrid('load',{
+			firstName:$('#firstname').val(),
+			lastName:$('#lastname').val()
+		});
+	}
+</script>
+</head>
+<body>
+	<h2>datagrid布局</h2>
+	<div class="demo-info" style="margin-bottom: 10px">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>可查询的datagrid</div>
+	</div>
+
+
+	<table id="dg" class="easyui-datagrid" style="width: 700px;height: 250px" url="user/findAllUserBySearch.action"
+		title="Search Item" iconCls="icon-search" toolbar="#toolbar" rownumbers="true" pagination="true"
+	>
+		<thead>
+			<tr>
+				<th field="firstname" width="80px">First Name</th>
+				<th field="lastname" width="80px">Last Name</th>
+				<th field="email" width="80px">email</th>
+				<th field="phone" width="80px">phone</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar" style="padding: 5px;height: auto">
+			<div style="margin-bottom: 5px;">
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+			</div>
+			日期  从:<input class="easyui-datebox" style="width: 100px"/>
+			          至:<input class="easyui-datebox" style="width:100px"/>
+			语言
+			<input class="easyui-combobox" style="width: 100px;" 
+				url="user/findLanguage.action" valueField="id"
+				textField="text"
+			/>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+	</div>
+	
+</body>
+</html>

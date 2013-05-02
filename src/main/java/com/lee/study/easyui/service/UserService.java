@@ -28,5 +28,15 @@ public interface UserService {
 	 * @param id
 	 */
 	boolean deleteUserById(int id);
+	/**
+	 * 通过firstName,lastName来查询用户信息
+	 * @param page
+	 * @param rows
+	 * @param firstname
+	 * @param lastname
+	 * @return
+	 */
+	Pagination<User> findAllUserBySearch(int page, int rows, String firstname,
+			String lastname);
 
 }

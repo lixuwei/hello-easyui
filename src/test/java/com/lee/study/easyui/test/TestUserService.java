@@ -54,4 +54,12 @@ public class TestUserService extends TestDB{
 			System.out.println(user.getFirstname());
 		}
 	}
+	
+	@Test
+	public void testFindAllByCondition(){
+		Pagination<User> pagination = userService.findAllUserBySearch(1, 10, "xu","l");
+		for (User user : pagination.getRows()) {
+			System.err.println(user.getFirstname()+"=="+user.getLastname());
+		}
+	}
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>菜单</title>
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/demo/demo.css">
+<script type="text/javascript" src="../jslib/easyui/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="../jslib/easyui/jquery.easyui.1.3.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(document).bind('contextmenu',function(e){
+			$("#mm").menu('show',{
+				left:e.pageX,
+				top:e.pageY
+			});		
+			return false;
+		});
+	});
+	function showMenu(){
+		$("#mm").menu('show',{
+			left:200,
+			top:100
+		});
+	}
+</script>
+</head>
+<body>
+	<h2>创建一个简单的Menu</h2>
+	<div class="demo-info" style="margin-bottom: 10px">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>简单的Meau</div>
+	</div>
+	
+	<a href="javascript:void(0)" class="easyui-linkbutton" plain="true" onclick="showMenu()" >弹出菜单</a>
+	
+	<div id="mm" class="easyui-menu" style="width: 120px;">
+		<!-- 弹出 ‘New’ -->
+		<div onclick="javascript:alert('new')">New</div>
+		<div>
+			<span>Open</span>
+			<div style="width: 150px;">
+				<div><b>Word</b></div>
+				<div><b>Excel</b></div>
+				<div><b>PowerPoint</b></div>
+			</div>
+		</div>
+		<div icon="icon-save">Save</div>
+		<div class="menu-sep"></div>
+		<div>Exit</div>
+	</div>
+	
+</body>
+</html>

@@ -33,4 +33,76 @@
 	<select id="total" resultType="int">
 		select count(id) from t_user
 	</select>
+	<select id="totalByCondition" resultType="int" parameterType="map">
+		select count(id) from t_user
+		<where>
+			<choose>
+				<when test="firstname == null and lastname != null">
+					lastname like #{lastname}
+				</when>
+				<when test="firstname != null and lastname == null">
+					firstname like #{firstname}
+				</when>
+				<otherwise>
+					firstname like #{firstname} and lastname like #{lastname}
+				</otherwise>
+			</choose>
+		</where>
+			 
+	</select>
+	<select id="findUserByCondition" resultType="User" parameterType="map">
+			select * from(
+			select *,row_number() over(order by firstname desc) as 'rowid' from t_user 
+			<where>
+			<choose>
+				<when test="firstname == null and lastname != null">
+					lastname like #{lastname}
+				</when>
+				<when test="firstname != null and lastname == null">
+					firstname like #{firstname}
+				</when>
+				<otherwise>
+					firstname like #{firstname} and lastname like #{lastname}
+				</otherwise>
+			</choose>
+		</where>
+		) as t
+			where rowid between #{pageStart} and #{pageEnd} 
+	</select>
+<!-- 	<select id="totalByCondition" resultType="int" parameterType="map">
+		select count(id) from t_user
+		<where>
+			<choose>
+				<when test="firstname == null and lastname != null">
+					lastname like #{lastname}
+				</when>
+				<when test="firstname != null and lastname == null">
+					firstname like #{firstname}
+				</when>
+				<otherwise>
+					firstname like #{firstname} and lastname like #{lastname}
+				</otherwise>
+			</choose>
+		</where>
+			 
+	</select>
+	<select id="findUserByCondition" resultType="int" parameterType="map">
+			select * from(
+			select *,row_number() over(order by firstname desc) as 'rowid' from t_user 
+			<where>
+			<choose>
+				<when test="firstname == null and lastname != null">
+					lastname like #{lastname}
+				</when>
+				<when test="firstname != null and lastname == null">
+					firstname like #{firstname}
+				</when>
+				<otherwise>
+					firstname like #{firstname} and lastname like #{lastname}
+				</otherwise>
+			</choose>
+		</where>
+		) as t
+			where rowid between #{pageStart} and #{pageEnd} 
+	</select> -->
 </mapper>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>布局UI</title>
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/demo/demo.css">
+<script type="text/javascript" src="../jslib/easyui/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="../jslib/easyui/jquery.easyui.1.3.2.js"></script>
+<script type="text/javascript">
+	function showcontent(language){
+		$('#content').html("Hello World" + language);
+	}
+</script>
+</head>
+<body>
+	<h2>创建一个简单的布局</h2>
+	<div class="demo-info" style="margin-bottom: 10px">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>Layout</div>
+	</div>
+
+	<div class="easyui-layout" style="width: 400px;height: 200px;">
+		<div region="west" split="true" title="Navigator" style="width:150px;">
+			<p style="padding: 5px;margin: 0">选择语言</p>
+			<ul>
+				<li><a href="javascript:void(0)" onclick="showcontent('java')">JAVA</a></li>
+				<li><a href="javascript:void(0)" onclick="showcontent('cshape')">C#</a></li>
+				<li><a href="javascript:void(0)" onclick="showcontent('vb')">VB</a></li>
+				<li><a href="javascript:void(0)" onclick="showcontent('erlang')">Erlang</a></li>
+			</ul>
+		</div>
+		<div id="content" region="center" title="Language" style="padding:5px;"></div>
+	</div>
+</body>
+</html>

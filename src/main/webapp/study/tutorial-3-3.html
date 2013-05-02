@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>菜单</title>
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../jslib/easyui/demo/demo.css">
+<script type="text/javascript" src="../jslib/easyui/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="../jslib/easyui/jquery.easyui.1.3.2.js"></script>
+<style type="text/css">
+	#Menu{
+		background: #fafafa;
+		padding: 5px;
+		width: 200px;
+		border: 1px solid #ccc;
+	}
+</style>
+</head>
+<body>
+	<h2>创建一个简单的Menu</h2>
+	<div class="demo-info" style="margin-bottom: 10px">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>简单的Meau</div>
+	</div>
+
+	<div id="Menu">
+		<a href="javascript:void(0)" class="easyui-splitbutton" onclick="alert('ok')" menu="#menu1" iconCls="icon-edit">Edit</a>
+		<a href="javascript:void(0)" class="easyui-menubutton" menu="#menu2" iconCls="icon-help">Help</a>
+	</div>
+	<div id="menu1" style="width: 150px">
+		<div>
+			<span>Open</span>
+			<div style="150px">
+				<div>Xbox720</div>
+			    <div>PS4</div>
+			</div>
+		</div>
+		<div>
+			<span>Edit</span>
+			<div style="150px">
+				<div>笑傲江湖</div>
+			    <div onclick="javascript:alert('OK')">东成西就</div>
+			</div>
+		</div>
+		<div iconCls="icon-undo">Undo</div>
+		<div iconCls="icon-redo">Redo</div>
+		<div class="menu-sep"></div>
+		<div>Cut</div>
+		<div>Copy</div>
+		<div>Paste</div>
+		<div class="menu-sep"></div>
+		<div iconCls="icon-remove">Delete</div>
+		<div>Select All</div>
+	</div>
+	<div id="menu2" style="width: 100px">
+		<div>Help</div>
+		<div>Update</div>
+		<div>About</div>
+	</div>
+</body>
+</html>

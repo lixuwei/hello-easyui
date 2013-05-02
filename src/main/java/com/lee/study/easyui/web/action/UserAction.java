@@ -1,6 +1,8 @@
 package com.lee.study.easyui.web.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lee.study.easyui.domain.User;
 import com.lee.study.easyui.service.UserService;
+import com.lee.study.easyui.web.vo.Combobox;
 import com.lee.study.easyui.web.vo.Pagination;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -27,6 +30,9 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 	
 	private int page;
 	private int rows;
+	
+	private String firstName="";
+	private String lastName="";
 	
 	private Pagination<User> pagination;
 	
@@ -59,6 +65,11 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 			this.writeJson(map);
 		}	
 	}
+	@Action("findAllUserBySearch")
+	public void findAllUserBySearch(){
+		pagination = userService.findAllUserBySearch(page,rows,firstName,lastName);
+		writeJson(pagination);
+	}
 	
 	@Action("updateUser")
 	public void updateUser(){
@@ -83,6 +94,16 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 			this.writeJson(map);
 		}
 		
+	}
+	@Action("findLanguage")
+	public void findLanguage(){
+		List<Combobox> comboboxs = new ArrayList<Combobox>();
+		comboboxs.add(new Combobox(1,"java"));
+		comboboxs.add(new Combobox(2,"c#"));
+		comboboxs.add(new Combobox(3,"ruby"));
+		comboboxs.add(new Combobox(4,"python"));
+		
+		writeJson(comboboxs);
 	}
 	
 	
@@ -114,6 +135,18 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	
